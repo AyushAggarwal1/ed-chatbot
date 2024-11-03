@@ -1,4 +1,5 @@
 # ed-chatbot
+Now Deployed on (https://ed-chatbot-ekbfcvcae3epdrgr.canadacentral-01.azurewebsites.net/)
 Chatbot is to be deployed as subject tutors
 
 To install dependencies use
