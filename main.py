@@ -12,7 +12,7 @@ import os
 # get api key from env
 # openai.api_key = os.env("openai_key")
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Initialize FastAPI app and logger
 app = FastAPI()
