@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.ERROR)
 templates = Jinja2Templates(directory="templates")
 
 # import static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
