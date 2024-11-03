@@ -3,19 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatGPT</title>
+    <title>Your Virtual Tutor</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        #chat { max-width: 600px; margin: 0 auto; }
-        #messages { border: 1px solid #ccc; height: 300px; overflow-y: scroll; margin-bottom: 10px; padding: 10px; }
-        .message { margin: 5px; }
-        .user { font-weight: bold; color: blue; }
-        .bot { font-weight: bold; color: green; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #chat {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #messages {
+            border: 1px solid #ccc;
+            height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        .user {
+            font-weight: bold;
+            color: blue;
+        }
+        .bot {
+            font-weight: bold;
+            color: green;
+        }
+        .error {
+            font-weight: bold;
+            color: red;
+        }
     </style>
 </head>
 <body>
     <div id="chat">
-        <h1>ChatGPT Tutor</h1>
+        <h1>Your Virtual Tutor</h1>
         <div id="messages"></div>
         <input type="text" id="userInput" placeholder="Ask a question..." />
         <button onclick="sendMessage()">Send</button>
@@ -29,17 +61,30 @@
             document.getElementById('messages').innerHTML += `<div class="message user">You: ${userInput}</div>`;
             document.getElementById('userInput').value = '';
 
-            const response = await fetch('/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: userInput }),
-            });
-            const data = await response.json();
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: userInput }),
+                });
 
-            document.getElementById('messages').innerHTML += `<div class="message bot">Bot: ${data.response}</div>`;
-            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight; // Scroll to the bottom
+                // Check if the response is not okay
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    document.getElementById('messages').innerHTML += `<div class="message error">Error: ${errorData.detail || 'An error occurred'}</div>`;
+                    return;
+                }
+
+                const data = await response.json();
+                document.getElementById('messages').innerHTML += `<div class="message bot">Bot: ${data.response}</div>`;
+            } catch (error) {
+                document.getElementById('messages').innerHTML += `<div class="message error">Error: ${error.message}</div>`;
+            }
+
+            // Scroll to the bottom of the messages
+            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
         }
     </script>
 </body>
