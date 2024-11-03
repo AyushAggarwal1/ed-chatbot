@@ -3,7 +3,8 @@ import openai
 import logging
 
 # Directly assign the OpenAI API key (be cautious with this approach)
-openai.api_key - "<your-api-key>"
+# openai.api_key - "<your-api-key>"
+openai.api_key = "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"
 
 # Initialize FastAPI app and logger
 app = FastAPI()

@@ -7,6 +7,9 @@ To install dependencies use
 To run the project locally use
 ```uvicorn main:app --reload``` 
 
+Use flask to run project 
+```python app.py```
+
 # Chatbot Deployment Guide
 
 This README provides a step-by-step guide on how to host and deploy your chatbot on Microsoft Teams and Google Chat. 
