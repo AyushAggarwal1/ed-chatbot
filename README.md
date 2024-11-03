@@ -1,6 +1,12 @@
 # ed-chatbot
 Chatbot is to be deployed as subject tutors
 
+To install dependencies use
+```pip install -r requirements.txt```
+
+To run the project locally use
+```uvicorn main:app --reload``` 
+
 # Chatbot Deployment Guide
 
 This README provides a step-by-step guide on how to host and deploy your chatbot on Microsoft Teams and Google Chat. 
