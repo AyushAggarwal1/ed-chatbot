@@ -1,5 +1,7 @@
 # ed-chatbot
-Now Deployed on https://ed-chatbot-ekbfcvcae3epdrgr.canadacentral-01.azurewebsites.net/
+Serivce created on Microsoft Azure on region canadacentral-01
+
+- https://ed-chatbot-ekbfcvcae3epdrgr.canadacentral-01.azurewebsites.net/
 
 Chatbot is to be deployed as subject tutors
 
@@ -8,6 +10,9 @@ To install dependencies use
 
 To run the project locally use
 ```uvicorn main:app --reload``` 
+
+To check the fastapi performace use ngrok
+```ngrok http 8000```
 
 Use flask to run project 
 ```python app.py```
