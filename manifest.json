@@ -1,0 +1,45 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.12",
+    "version": "1.0.0",
+    "id": "01d80039-0011-4129-96ad-6f38ab45d5ce",
+    "packageName": "ed-chatbot",
+    "developer": {
+      "name": "Your Name",
+      "websiteUrl": "https://ayushaggarwalportfolio.netlify.app/",
+      "privacyUrl": "https://ayushaggarwalportfolio.netlify.app/",
+      "termsOfUseUrl": "https://ayushaggarwalportfolio.netlify.app/"
+    },
+    "name": {
+      "short": "AI Tutor",
+      "full": "Your AI Tutor"
+    },
+    "description": {
+      "short": "AI Tutor",
+      "full": "This is a chatbot that help student in their studies"
+    },
+    "icons": {
+      "outline": "outline.png", 
+      "color": "outline.png" 
+    },
+    "accentColor": "#FFFFFF", 
+    "bot": {
+      "botId": "01d80039-0011-4129-96ad-6f38ab45d5ce", 
+      "scopes": ["personal", "team", "groupchat"], 
+      "commandLists": [{
+        "title": "Commands",
+        "commands": [{
+          "id": "getResponse",
+          "title": "Get Response",
+          "description": "Ask the chatbot a question"
+        }]
+      }]
+    },
+    "permissions": ["identity", "messageTeamMembers"], 
+    "validDomains": ["https://ed-chatbot-ekbfcvcae3epdrgr.canadacentral-01.azurewebsites.net/"], 
+    "webApplicationInfo": {
+      "id": "01d80039-0011-4129-96ad-6f38ab45d5ce", 
+      "resource": "https://ed-chatbot-ekbfcvcae3epdrgr.canadacentral-01.azurewebsites.net/" 
+    }
+  }
+  
