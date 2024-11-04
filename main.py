@@ -42,7 +42,9 @@ async def chat_endpoint(request: Request):
         
         # Extract and return the AI response
         ai_response = response.choices[0].message['content'].strip()
-        return {"response": ai_response}
+        return {"type": "message",
+                "text": ai_response
+        }
     
     except openai.error.RateLimitError:
         logging.error("Rate limit exceeded.")
