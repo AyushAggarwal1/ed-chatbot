@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from dotenv import load_dotenv
 import openai
 import logging
 import os
@@ -10,9 +11,8 @@ import os
 # openai.api_key = "<your-api-key>"
 
 # get api key from env
-# openai.api_key = os.env("openai_key")
-
-openai.api_key = "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"
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Initialize FastAPI app and logger
 app = FastAPI()
