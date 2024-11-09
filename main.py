@@ -17,10 +17,12 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # Initialize FastAPI app and logger
 app = FastAPI()
 logging.basicConfig(level=logging.ERROR)
-templates = Jinja2Templates(directory="templates")
 
 # import static files
-# app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# import static template index.html
+templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):

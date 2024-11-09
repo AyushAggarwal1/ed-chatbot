@@ -1,0 +1,13 @@
+version: '3.8'  # Specify the version of the Docker Compose file format
+
+services:
+  ed-chatbot:
+    build:
+      context: .  # Current directory
+      dockerfile: Dockerfile  # Specify the Dockerfile to use
+    ports:
+      - "8000:8000"  # Map port 8000 on the host to port 8000 on the container
+    environment:
+      - OPENAI_API_KEY="fake-key" # Pass the OpenAI API key from your environment
+    volumes:
+      - .:/app  # Mount the current directory to /app in the container for live code updates
