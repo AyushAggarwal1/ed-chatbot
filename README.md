@@ -1,5 +1,5 @@
 # ed-chatbot
-Service created on Microsoft Azure on region canadacentral-01
+Serivce created on Microsoft Azure on region canadacentral-01
 
 - https://ed-chatbot-ekbfcvcae3epdrgr.canadacentral-01.azurewebsites.net/
 
