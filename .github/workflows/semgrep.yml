@@ -1,0 +1,56 @@
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+    - main
+    paths:
+    - .github/workflows/semgrep.yml
+name: Semgrep Findings
+jobs:
+  semgrep-free:
+    name: Semgrep-free
+    runs-on: ubuntu-20.04
+    container:
+      image: returntocorp/semgrep
+    steps:
+    - uses: actions/checkout@v4
+    - run: |
+        # Run Semgrep scan and store the output in JSON
+        semgrep scan --json --json-output /tmp/semgrep.json
+        
+        # Capture GitHub-related variables and prepend them to the Semgrep output
+        metadata_json=$(jq -n \
+          --arg repo "${{ github.repository }}" \
+          --arg sha "${{ github.sha }}" \
+          --arg ref "${{ github.ref }}" \
+          --arg run_id "${{ github.run_id }}" \
+          --arg run_number "${{ github.run_number }}" \
+          --arg github_url "${{ github.server_url }}/${{ github.repository }}" \
+          --arg github_run_url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+          --arg source "$SOURCE" \
+          '{
+            repo: $repo,
+            sha: $sha,
+            ref: $ref,
+            run_id: $run_id,
+            run_number: $run_number,
+            github_url: $github_url,
+            github_run_url: $github_run_url,
+            source: $source
+          }')
+
+        # Append the metadata to the Semgrep JSON output
+        semgrep_json=$(cat /tmp/semgrep.json)
+        combined_json=$(echo "$metadata_json" | jq --argjson semgrep "$semgrep_json" '. + $semgrep')
+
+        # Save the combined JSON to the output file
+        echo "$combined_json" > /tmp/combined_output.json
+
+    - name: View the output
+      run: cat /tmp/combined_output.json
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: semgrep-report
+        path: /tmp/combined_output.json
