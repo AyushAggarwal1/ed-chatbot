@@ -50,7 +50,7 @@ jobs:
       run: cat /tmp/combined_output.json
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: semgrep-report
         path: /tmp/combined_output.json
