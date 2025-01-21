@@ -7,7 +7,7 @@ on:
     - .github/workflows/SAST.yml
 name: SAST comparison
 jobs:
-  semgrep-free:
+  semgrep:
     name: Semgrep-free
     runs-on: ubuntu-20.04
     container:
